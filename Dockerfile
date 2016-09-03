@@ -5,4 +5,4 @@ MAINTAINER Yan Fei <sksycribe.yf@gmail.com>
 RUN apt-get update && \
     apt-get install -y --no-install-recommends build-essential
 
-RUN echo "done!"
+RUN echo "done! "
