@@ -5,7 +5,7 @@ MAINTAINER Yan Fei <sksycribe.yf@gmail.com>
 RUN apt-get update && \
     apt-get install -y --no-install-recommends build-essential
 
-RUN java --version
+RUN java -version
 RUN make --version
 RUN gitbook --version
 RUN echo "done! "
