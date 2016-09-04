@@ -36,10 +36,4 @@ RUN wget http://download.opensuse.org/repositories/home:estan:protoc-gen-doc/Deb
 # Install doctoc tool
 RUN npm install -g doctoc
 
-RUN java -version
-RUN make --version
-RUN gitbook --version
-RUN node --version
-RUN protoc --version
-RUN doctoc --version
-RUN echo "done! "
+RUN java -version && make --version && gitbook --version && protoc --version && doctoc --help
