@@ -33,9 +33,13 @@ RUN wget http://download.opensuse.org/repositories/home:estan:protoc-gen-doc/Deb
     echo 'deb http://download.opensuse.org/repositories/home:/estan:/protoc-gen-doc/Debian_8.0/ /' >> /etc/apt/sources.list.d/protoc-gen-doc.list && \
     apt-get update && apt-get install protoc-gen-doc 
 
+# Install doctoc tool
+RUN npm install -g doctoc
+
 RUN java -version
 RUN make --version
 RUN gitbook --version
 RUN node --version
 RUN protoc --version
+RUN doctoc --version
 RUN echo "done! "
