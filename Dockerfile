@@ -4,7 +4,10 @@ MAINTAINER Yan Fei <sksycribe.yf@gmail.com>
 ARG VERSION=3.2.0
 ENV NPM_CONFIG_LOGLEVEL info
 
-# gitbook 
+# Setup npm http only
+RUN npm config set strict-ssl false && npm config set registry "http://registry.npmjs.org"
+
+# gitbook install
 RUN npm install --global gitbook-cli && gitbook fetch ${VERSION} && \
     npm cache clear && \
     rm -fr /tmp/*
@@ -15,16 +18,13 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install build essential and utilities
-RUN apt-get install -y --no-install-recommends build-essential protobuf-compiler wget curl procps openssh-client git bzip2
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends build-essential protobuf-compiler wget curl procps openssh-client git bzip2
 
-# Install Calibre
+# Install Calibre, and graphviz for plantuml
 RUN echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/sources.list.d/backports.list && \
     apt-get update && \
-    apt-get install -y --no-install-recommends calibre fonts-noto fonts-noto-cjk locales-all && \
-    rm -rf /var/lib/apt/lists/*
-
-# Install Graphviz for plantuml
-RUN apt-get install -y --no-install-recommends graphviz && \
+    apt-get install -y --no-install-recommends calibre fonts-noto fonts-noto-cjk locales-all graphviz && \
     rm -rf /var/lib/apt/lists/*
 
 # Add plugin for protc-doc-gen
